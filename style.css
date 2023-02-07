@@ -155,7 +155,7 @@ a.button.small:hover {
 #footer p {
   text-align:center;
 }
-#mapping iframe {
+.section iframe {
   width:100%;
   height:400px;
 }
@@ -220,7 +220,7 @@ a.button.small:hover {
   .half.left .padding, .half.right .padding, .padding {
     padding:5px;
   }
-  #mapping iframe {
+  .section iframe {
     height: 250px;
   }
 }
