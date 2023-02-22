@@ -1,0 +1,482 @@
+/* Import the font */
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
+
+* {
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100vh;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: hidden; /* Disable vertical scroll */
+}
+
+/* Start styling topnav */
+.topnav {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-content: center;
+  gap: 10px;
+  padding: 10px;
+  color: rgba(081, 124, 137, 1);
+  text-shadow: 5px 5px 10px rgba(081, 124, 137, 0.3);
+  /*   Transition*/
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 10px;
+}
+.switch {
+  order: 1;
+  min-width: 50px;
+  line-height: 58px;
+  z-index: 3;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*   Glassmorphism effect*/
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+.switch label {
+  display: block;
+  width: 50px;
+  height: 58px;
+  cursor: pointer;
+}
+.switch:hover {
+  /*   Glassmorphism effect*/
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+}
+#toggler {
+  display: none;
+}
+#toggler:checked + .side {
+  display: block;
+  opacity: 1;
+  margin-left: 0px;
+  /*   Glassmorphism effect*/
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+.switch .title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.side {
+  display: hidden;
+  position: fixed;
+  height: 83vh;
+  margin-left: -200px;
+  padding: 10px;
+  opacity: 0;
+  line-height: 20px;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: auto; /* Enable Vertical scroll */
+  /*   Transition*/
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.side .yourFilter {
+  display: flex;
+  gap: 10px;
+}
+.side .yourFilter .title {
+  min-width: 133px;
+}
+.side thead {
+  /*table-layout:fixed;*/
+  text-align: center;
+}
+.side td {
+  white-space: nowrap;
+  font-size: 12px;
+}
+.side tr {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.side th {
+  cursor: pointer;
+}
+.sideTabHead tr {
+  padding: 0 15px;
+}
+.sideTabBody tr {
+  font-size: 16px;
+  font-weight: 600;
+  vertical-align: middle;
+  text-align: left;
+  padding: 8px 15px;
+  margin: 5px 0;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #507d89;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.sideTabBody tr:hover {
+  background-color: #507d89;
+  color: #ffffff;
+}
+.dropdown {
+  order: 2;
+  cursor: pointer;
+  width: 1000px;
+  border-radius: 10px;
+  z-index: 4;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*   Glassmorphism effect*/
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+.dropbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+}
+.dropdown:hover {
+  /*   Glassmorphism effect*/
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+}
+.dropdown:hover .dropdown-content {
+  display: flex;
+  top: 58px;
+  max-height: 90vh;
+  opacity: 1;
+  overflow-y: auto; /* Enable vertical scroll */
+}
+.dropbtn .title {
+  font-size: 26px;
+  font-weight: 600;
+  /*   Transition*/
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.dropdown-content {
+  display: flex;
+  position: absolute;
+  align: center;
+  top: 0;
+  max-height: 0;
+  opacity: 0;
+  min-width: 500px;
+  overflow: hidden;
+  padding: 10px;
+  /*   Glassmorphism effect*/
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  /*   Transition*/
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+}
+.filters div {
+  padding: 12px 0;
+}
+.filters input[type="radio"] {
+  visibility: hidden;
+  display: none;
+}
+
+.filters label {
+  font-size: 16px;
+  font-weight: 600;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #507d89;
+  padding: 8px 10px;
+  margin: 5px;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.filters label:hover {
+  background-color: #507d89;
+  color: #ffffff;
+}
+.filters input[type="radio"]:checked + label {
+  background-color: #507d89;
+  color: #ffffff;
+}
+.about {
+  order: 3;
+  min-width: 100px;
+  cursor: pointer;
+  line-height: 58px;
+  font-size: 20px;
+  font-weight: 450;
+  z-index: 9;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*   Glassmorphism effect*/
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 10px;
+}
+.about:hover {
+  /*   Glassmorphism effect*/
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+}
+.about:hover .dataSource {
+  opacity: 1;
+  right: 0;
+}
+.dataSource {
+  cursor: auto;
+  display: flex;
+  position: absolute;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  line-height: 25px;
+  font-size: 12px;
+  opacity: 0;
+  right: -1200px;
+  min-width: 500px;
+  max-height: 85vh;
+  padding: 20px;
+  overflow-y: auto; /* Enable vertical scroll */
+  /*   Glassmorphism effect*/
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  /*   Transition*/
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.about .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.dataSource .title {
+  line-height: 35px;
+}
+.bold-left {
+  font-weight: bold;
+  align-self: flex-start;
+  text-align: left;
+}
+
+@media screen and (min-width: 769px) {
+  .dropbtn .title::before {
+    content: "GGiG - ";
+  }
+}
+@media screen and (max-width: 700px) {
+  .topnav {
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 5px;
+    padding: 5px;
+  }
+  .switch {
+    order: 2;
+    min-width: 45px;
+    line-height: 45px;
+  }
+  .switch .title {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .switch label {
+    display: block;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+  }
+  .side {
+    position: absolute;
+    top: 45px;
+    right: -120vw;
+    height: 90vh;
+    width: 90vw;
+    margin: 0;
+  }
+  #toggler:checked + .side {
+    position: absolute;
+    top: 45px;
+    right: -70px;
+    height: 90vh;
+    width: 90vw;
+    margin: 0;
+  }
+  .sideTabBody tr {
+    width: 80vw;
+  }
+  .dropdown {
+    order: 1;
+    width: 100%;
+  }
+  .dropbtn {
+  }
+  .dropbtn .title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .dropdown-content {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 45px;
+    min-width: 0;
+    max-width: 0;
+    max-height: auto;
+    overflow-y: auto; /* Enable Vertical scroll */
+    padding: 0, 5px, 5px, 0;
+    background: rgba(255, 255, 255, 1);
+  }
+  .dropdown:hover .dropdown-content {
+    top: 45px;
+    display: block;
+    max-width: 90vw;
+  }
+  .filters {
+    flex-flow: column wrap;
+    align-items: flex-start;
+    width: 100vw;
+  }
+  .filters label {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px, 5px;
+  }
+  .about {
+    line-height: 35px;
+    min-width: 70px;
+  }
+  .about .title {
+    font-size: 14px;
+    line-height: 45px;
+  }
+  .dataSource {
+    min-width: 0;
+    max-width: 0;
+    max-height: 0;
+    right: 0;
+  }
+  .about:hover .dataSource {
+    min-width: 85vw;
+    max-width: 85vw;
+    max-height: 85vh;
+  }
+  .dataSource .title {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 25px;
+  }
+}
+/* Finish styling topnav */
+
+/* start styling map */
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  z-index: 1;
+}
+/* Start styling clickPopup */
+.clickPopup {
+  animation: fadeInOut 0.3s;
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.mapboxgl-popup-tip {
+  background-image: linear-gradient(#e66465, #9198e5);
+}
+/*we can hide the close button in js by closeButton: false*/
+/*.mapboxgl-popup-close-button {
+          visibility: hidden;
+        }*/
+.mapboxgl-popup-content {
+  padding: 15px;
+  background-color: ;
+  font-size: 18px;
+  text-align: center;
+  line-height: 140%;
+  text-shadow: 5px 5px 5px rgba(081, 124, 137, 0.2);
+  color: #507d89;
+  /*   Glassmorphism effect*/
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+.mapboxgl-popup-content a {
+  font-size: 15px;
+  color: #8694ae;
+  transition: color 0.3s;
+}
+.mapboxgl-popup-content a:hover {
+  color: #b3bfd1;
+}
+.mapboxgl-popup-content.pointName {
+  font-weight: 1000;
+  font-size: 20px;
+}
+/* Finished styling clickPopup*/
+/* finish styling map */

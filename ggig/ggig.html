@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - GGiG5.0</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>GGiG2.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- Logo css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Mapbox GL JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+  <!-- Mapbox GL CSS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+  <!-- Mapbox GL directions plugin -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js'></script>
+</head>
+
+<body>
+  <div class="topnav" id="myTopnav">
+    <div class="switch">
+      <div>
+        <label class="title" for="toggler" title="Side Table">&#9776;</label>
+      </div>
+      <input type="checkbox" id="toggler" />
+      <div class="side">
+        <div class="yourFilter">
+          <div class="title">You selected:</div>
+          <div id="userSelect"></div>
+        </div>
+        <hr color="#507d89">
+        <table id="sideTab">
+          <thead class="sideTabHead">
+            <th title="Click to sort" onclick='sortTable(document.getElementById("sideTabBody"), 0)'>Name</th>
+            <!--                    <th>Class</th>-->
+            <th title="Click to sort" onclick='sortTable(document.getElementById("sideTabBody"), 1)'>Postcode</th>
+          </thead>
+          <tbody id="sideTabBody" class="sideTabBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="dropdown">
+      <div class="dropbtn">
+        <div class="title">Get Groceries in Glasgow</div>
+        <i class="fa fa-caret-down"></i>
+      </div>
+      <div class="dropdown-content">
+        <div class="filters" id='filters'>
+          <div>
+            <input id='all' type='radio' name='filter' value='All' checked='checked'>
+            <label for='all'>All</label>
+          </div>
+          <div>
+            <input id='alcoholicDrinks' type='radio' name='filter' value='Alcoholic Drinks'>
+            <label for='alcoholicDrinks'>Alcoholic Drinks</label>
+          </div>
+          <div>
+            <input id='alcoholicDrinks2' type='radio' name='filter' value='Alcoholic Drinks Including Off Licences and Wholesalers'>
+            <label for='alcoholicDrinks2'>Alcoholic Drinks Including Off Licences and Wholesalers</label>
+          </div>
+          <div>
+            <input id='bakeries' type='radio' name='filter' value='Bakeries'>
+            <label for='bakeries'>Bakeries</label>
+          </div>
+          <div>
+            <input id='bakingAndConfectionery' type='radio' name='filter' value='Baking And Confectionery'>
+            <label for='bakingAndConfectionery'>Baking And Confectionery</label>
+          </div>
+          <div>
+            <input id='butchers' type='radio' name='filter' value='Butchers'>
+            <label for='butchers'>Butchers</label>
+          </div>
+          <div>
+            <input id='cac' type='radio' name='filter' value='Cash And Carry'>
+            <label for='cac'>Cash And Carry</label>
+          </div>
+          <div>
+            <input id='catering' type='radio' name='filter' value='Catering and Non Specific Food Products'>
+            <label for='catering'>Catering and Non Specific Food Products</label>
+          </div>
+          <div>
+            <input id='confectioners' type='radio' name='filter' value='Confectioners'>
+            <label for='confectioners'>Confectioners</label>
+          </div>
+          <div>
+            <input id='csis' type='radio' name='filter' value='Convenience Stores and Independent Supermarkets'>
+            <label for='csis'>Convenience Stores and Independent Supermarkets</label>
+          </div>
+          <div>
+            <input id='dairyFarming' type='radio' name='filter' value='Dairy Farming'>
+            <label for='dairyFarming'>Dairy Farming</label>
+          </div>
+          <div>
+            <input id='dairyProducts' type='radio' name='filter' value='Dairy Products'>
+            <label for='dairyProducts'>Dairy Products</label>
+          </div>
+          <div>
+            <input id='delicatessens' type='radio' name='filter' value='Delicatessens'>
+            <label for='delicatessens'>Delicatessens</label>
+          </div>
+          <div>
+            <input id='fmpp' type='radio' name='filter' value='Fish, Meat and Poultry Products'>
+            <label for='fmpp'>Fish, Meat and Poultry Products</label>
+          </div>
+          <div>
+            <input id='fishmongers' type='radio' name='filter' value='Fishmongers'>
+            <label for='fishmongers'>Fishmongers</label>
+          </div>
+          <div>
+            <input id='frozenFoods' type='radio' name='filter' value='Frozen Foods'>
+            <label for='frozenFoods'>Frozen Foods</label>
+          </div>
+          <div>
+            <input id='ffvg' type='radio' name='filter' value='Fruit, Flower and Vegetable Growers'>
+            <label for='ffvg'>Fruit, Flower and Vegetable Growers</label>
+          </div>
+          <div>
+            <input id='gnag' type='radio' name='filter' value='Green and New Age Goods'>
+            <label for='gnag'>Green and New Age Goods</label>
+          </div>
+          <div>
+            <input id='gfspyo' type='radio' name='filter' value='Grocers, Farm Shops and Pick Your Own'>
+            <label for='gfspyo'>Grocers, Farm Shops and Pick Your Own</label>
+          </div>
+          <div>
+            <input id='markets' type='radio' name='filter' value='Markets'>
+            <label for='markets'>Markets</label>
+          </div>
+          <div>
+            <input id='additives' type='radio' name='filter' value='Milling, Refining and Food Additives'>
+            <label for='additives'>Milling, Refining and Food Additives</label>
+          </div>
+          <div>
+            <input id='nonAlcoholicDrinks' type='radio' name='filter' value='Non Alcoholic Drinks'>
+            <label for='nonAlcoholicDrinks'>Non Alcoholic Drinks</label>
+          </div>
+          <div>
+            <input id='health' type='radio' name='filter' value='Organic, Health, Gourmet and Kosher Foods'>
+            <label for='health'>Organic, Health, Gourmet and Kosher Foods</label>
+          </div>
+          <div>
+            <input id='supermarketChains' type='radio' name='filter' value='Supermarket Chains'>
+            <label for='supermarketChains'>Supermarket Chains</label>
+          </div>
+          <div>
+            <input id='teaAndCoffee' type='radio' name='filter' value='teaAndCoffee'>
+            <label for='teaAndCoffee'>Tea and Coffee Merchants</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about">
+      <div class="title">About</div>
+      <div class="dataSource">
+        <div class="title bold-left">What</div>
+        <div class="bold-left"> A simple and beautiful website that will help you find places to buy groceries in Glasgow whether you are at school or at home or in the park!</div>
+        <br>
+        <div class="bold-left"> This website aims to help outlanders, for instance, international students, get groceries for cooking.</div>
+        <br>
+        <div class="bold-left">Contains latest POI (Point of Interest) information for foods and drinks, EXCLUDING delicatessens, restaurants, fast food outlets, etc.</div>
+        <br>
+        <div class="title bold-left">How</div>
+        <div class="bold-left"> For PC & Mac user:
+          <ul>
+            <li>Hover on Title to open filter</li>
+            <li>Click filter button to filter your destination</li>
+            <li>Click menu button to open and close side table</li>
+            <li>Double click filter button to generate side table body</li>
+            <li>Click on the table element to fly to it</li>
+            <li>Click on the table header to sort the data by alphabetical order</li>
+            <li>Click symbol in map to generate a discription popup</li>
+            <li>Pan, zoom and rotate the map with the function button on the bottom-right corner. You can also use your mouse wheel and right click.</li>
+            <li>Find your current location with the function button on the bottom-right corner. May require your consent to access location information. Click again to disable the find location function.</li>
+          </ul>
+        </div>
+        <div class="bold-left"> For mobile device user:
+          <ul>
+            <li>Touch or hold on Title to open filters</li>
+            <li>Touch filter button to filter your destination</li>
+            <li>Touch menu button to:</li>
+            <ul>
+              <li>Close filters</li>
+              <li>Open and close side table</li>
+              <li>Close About page</li>
+            </ul>
+            <li>Double Touch filter button to generate side table body</li>
+            <li>Touch on the table element to fly to it</li>
+            <li>Touch on the table header to sort the data by alphabetical order</li>
+            <li>Touch symbol in map will generate a discription popup</li>
+            <li>Pan, zoom and rotate the map with the function button on the bottom-right corner. You can also use your touch screen gesture.</li>
+            <li>Find your current location with the function button on the bottom-right corner. May require your consent to access location information. Touch again to disable the find location function.</li>
+          </ul>
+        </div>
+
+        <div class="title">Data Source:</div>
+        <div>
+          <span class="bold-left">POI data sourse:</span>
+          <a href="https://digimap.edina.ac.uk/os" target="_blank" tabindex="-1">Ordnance Survey</a>
+        </div>
+        <div>
+          <span class="bold-left">Postcode coordinate data sourse:</span>
+          <a href="https://geoportal.statistics.gov.uk/datasets/national-statistics-postcode-lookup-2021-census-november-2022/about" target="_blank" tabindex="-1">statistics.gov.uk</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="map"></div>
+
+</body>
+
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
